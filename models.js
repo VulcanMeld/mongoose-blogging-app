@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
-const postSchema = mongoose.Schema({
+const blogSchema = mongoose.Schema({
     title: String,
     content: String,
     author: {
@@ -11,6 +12,13 @@ const postSchema = mongoose.Schema({
 
 })
 
-const Blog = mongoose.model("blog",postSchema)
+/*blogSchema.methods.serialize = function () {
+    return {
+        title : this.title
+    }
+}
+*/
+const collectionName = 'blog'
+const Blog = mongoose.model('Blog',blogSchema,collectionName)
 
 module.exports = {Blog}
