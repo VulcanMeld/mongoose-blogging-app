@@ -37,7 +37,17 @@ app.post('/posts',(req,res) => {
 })
 
 
-app.put('/posts:id', (req,res) => {
+app.put('/posts/:id', (req,res) => {
+  Blog.findById(req.params.id)
+  .then(post => {
+    post.author = req.body.author
+    post.title = req.body.title
+    post.content = req.body.content
+
+    post.save()
+    
+    res.send(post)
+  })
 
 })
 
