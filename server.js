@@ -7,6 +7,11 @@ mongoose.Promise = global.Promise
 
 app.use(express.json());
 
+app.use(function(err, req, res, next) {
+  console.error(err);
+  res.status(500).send();
+});
+
 app.get('/posts',(req,res) => {
   Blog.find()
   .then(posts => {
