@@ -27,6 +27,12 @@ app.get('/posts/:id',(req,res) => {
 
 
 app.post('/posts',(req,res) => {
+  req.body._id =  mongoose.Types.ObjectId()
+    Blog.create(req.body)
+    .then(newPost => {
+    res.send(newPost)
+  })
+  
 
 })
 
