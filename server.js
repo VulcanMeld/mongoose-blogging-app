@@ -10,23 +10,26 @@ app.use(express.json());
 app.get('/posts',(req,res) => {
   Blog.find()
   .then(posts => {
-    res.json(posts);
+    res.json({posts: posts.map (
+      (post) => post.serialize())
+    }) ;
     
   })
-
 })
 
 
 app.get('/posts/:id',(req,res) => {
   Blog.findById(req.params.id)
   .then(post => {
-    res.json(post)
+    res.json( post.serialize())
+    })
   })
-
-})
 
 
 app.post('/posts',(req,res) => {
+  if( !(req.body.hasOwnProperty("title")) || ! ("content" in req.body) || ! ("author" in req.body)) {
+    res.status(400).send("All posts need a title, content, and an author")
+  }
   req.body._id =  mongoose.Types.ObjectId()
     Blog.create(req.body)
     .then(newPost => {
@@ -38,6 +41,15 @@ app.post('/posts',(req,res) => {
 
 
 app.put('/posts/:id', (req,res) => {
+  if( !(req.body.hasOwnProperty('_id'))) {
+    res.status(400).send("Request body is missing the _id property")
+
+  }
+
+  if( req.param._id != req.body._id ) {
+    res.status(400).send("Url id parameter does not match request body _id parameter")
+
+  }
   Blog.findById(req.params.id)
   .then(post => {
     post.author = req.body.author
@@ -46,7 +58,7 @@ app.put('/posts/:id', (req,res) => {
 
     post.save()
     
-    res.send(post)
+    res.status(200).send(post)
   })
 
 })

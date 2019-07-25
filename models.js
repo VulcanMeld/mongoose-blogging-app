@@ -12,12 +12,16 @@ const blogSchema = mongoose.Schema({
 
 })
 
-/*blogSchema.methods.serialize = function () {
+blogSchema.methods.serialize = function () {
+
     return {
-        title : this.title
+        title : this.title,
+        content: this.content,
+        author: this.author.firstName + " " + this.author.lastName
+
+
     }
 }
-*/
 const collectionName = 'blog'
 const Blog = mongoose.model('Blog',blogSchema,collectionName)
 
