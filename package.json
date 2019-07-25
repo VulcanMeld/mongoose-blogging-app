@@ -1,0 +1,22 @@
+{
+  "name": "mongoose-blogging-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VulcanMeld/mongoose-blogging-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VulcanMeld/mongoose-blogging-app/issues"
+  },
+  "homepage": "https://github.com/VulcanMeld/mongoose-blogging-app#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
