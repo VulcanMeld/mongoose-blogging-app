@@ -53,9 +53,16 @@ app.put('/posts/:id', (req,res) => {
 
 
 
-app.delete('/posts:id', (req,res) => {
+app.delete('/posts/:id', (req,res) => {
+  Blog.findByIdAndRemove(req.params.id)
+  .then(() => {
+    res.status(204).end()
 
-})
+  })
+  
+
+  })
+
 
 let server;
 
