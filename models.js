@@ -1,14 +1,26 @@
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
-const blogSchema = mongoose.Schema({
-    title: String,
-    content: String,
-    author: {
-        firstName: String,
-        lastName: String},
+const authorSchema = mongoose.Schema({
+    firstName: String,
+    lastName: String,
+    userName: String,
     _id: ObjectId
 
+
+})
+
+const commentSchema = mongoose.Schema({
+    content: String
+
+})
+
+const blogSchema = mongoose.Schema({
+    title: String,
+    author: { type: mongoose.Schema.Types.ObjectId, ref: 'Author' },
+    content: String,
+    comments: [commentSchema],
+    _id: ObjectId
 
 })
 
