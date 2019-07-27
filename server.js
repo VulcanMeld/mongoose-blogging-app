@@ -138,9 +138,10 @@ app.delete('/posts/:id', (req,res) => {
   })
 
   app.delete('/authors/:id', (req,res) => {
-    Author.findByIdAndRemove(req.params.id)
+    Blog.remove({author: req.params.id})
     .then(() => {
-      Blog.find()
+      
+      Author.findByIdAndRemove(req.params.id)
     })
     .then(() => {
       res.status(204).end()
