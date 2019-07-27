@@ -10,6 +10,15 @@ const authorSchema = mongoose.Schema({
 
 })
 
+authorSchema.methods.serialize = function () {
+    return {
+        _id : this._id,
+        name: this.firstName + " " + this.lastName,
+        userName: this.userName
+
+    }
+}
+
 const commentSchema = mongoose.Schema({
     content: String
 
