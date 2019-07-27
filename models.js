@@ -29,6 +29,17 @@ blogSchema.methods.serialize = function () {
     return {
         title : this.title,
         content: this.content,
+        author: this.author.firstName + " " + this.author.lastName
+
+
+    }
+}
+
+blogSchema.methods.serializeWithComments = function () {
+
+    return {
+        title : this.title,
+        content: this.content,
         author: this.author.firstName + " " + this.author.lastName,
         comments: this.comments
 
@@ -38,6 +49,5 @@ blogSchema.methods.serialize = function () {
 
 const Author = mongoose.model('Author', authorSchema)
 const Blog = mongoose.model('BlogPosts',blogSchema)
-const Comment = mongoose.model('Comment', commentSchema)
 
-module.exports = {Author,Blog,Comment}
+module.exports = {Author,Blog}

@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-const {Blog} = require('./models')
+const {Author,Blog} = require('./models')
 const {DATABASE_URL,PORT} = require('./config')
 mongoose.Promise = global.Promise
 
@@ -14,6 +14,7 @@ app.use(function(err, req, res, next) {
 
 app.get('/posts',(req,res) => {
   Blog.find()
+  .populate('author')
   .then(posts => {
     res.json({posts: posts.map (
       (post) => post.serialize())
@@ -26,7 +27,7 @@ app.get('/posts',(req,res) => {
 app.get('/posts/:id',(req,res) => {
   Blog.findById(req.params.id)
   .then(post => {
-    res.json( post.serialize())
+    res.json( post.serializeWithComments())
     })
   })
 
