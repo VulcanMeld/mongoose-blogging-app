@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/VulcanMeld/mongoose-blogging-app#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mongoose": "^5.6.6"
   }
 }
